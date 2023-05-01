@@ -38,7 +38,10 @@ const detail = () => {
   let { id } = useParams();
   let tshirt = shirts[id];
 
-  let [tshirtImage, setTshirtImage] = useState(tshirt.colors.white.front);
+  // let [tshirtImage, setTshirtImage] = useState(tshirt.default.front);
+  let [tshirtImage, setTshirtImage] = tshirt.colors && tshirt.colors.white && tshirt.colors.white.front ? useState(tshirt.colors.white.front):useState(tshirt.default.front);
+  
+  
   let [fb, setFb] = useState('front');
   let [color, setColor] = useState('white');
   let [quantity, setQuantity] = useState('1');
@@ -57,25 +60,29 @@ const detail = () => {
   })
 
   useEffect(() => {
-    setTshirtImage(tshirt.colors[color][fb]);
+    try {
+      setTshirtImage(tshirt.colors[color][fb]);
+    } catch {
+      setTshirtImage(tshirt.default[fb]);
+    }
   }, [fb, color]);
 
-  useEffect(() => {
+  if (tshirt.price !== undefined) {
+    useEffect(() => {
     if (size !== "Size:") {
-      setLinkStyle({
-
-      })
-      // setToCartAvailable(true);
-      return;
-    } else {
-      setLinkStyle({
-        backgroundColor: "#8d8d8d",
-        cursor: "default",
-        pointerEvents: "none",
-      })
-      // setToCartAvailable(false);
-    }
-  }, [size]);
+        setLinkStyle({
+  
+        })
+        return;
+      } else {
+        setLinkStyle({
+          backgroundColor: "#8d8d8d",
+          cursor: "default",
+          pointerEvents: "none",
+        })
+      }
+    }, [size]);
+  }
 
   useEffect(() => {
     setCartItem({

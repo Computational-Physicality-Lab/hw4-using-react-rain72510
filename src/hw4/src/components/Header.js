@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import './Header.css';
 import { Link } from 'react-router-dom'
@@ -25,11 +25,11 @@ function Header () {
   
   const [tshirtCnt, setTshirtCnt] = useState(0);
   const changeCntHandler = () => {
-    // console.log(e);
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     var cnt = 0;
     cartItems.map((tshirt) => {
       cnt += Number(tshirt.quantity);
+      return null;
     })
     setTshirtCnt(cnt);
   }

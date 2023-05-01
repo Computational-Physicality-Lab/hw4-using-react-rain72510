@@ -110,6 +110,17 @@ export default [{
     }
 },
 {
+    "name": "Forever Bla",
+    "description": "Proudly wear your tartan plaid as a patch on your front shirt pocket. And on the back, ask the important question that all CMU students should know the answer to: got plaid?",
+    "price": "$6.99",
+    "colors": {
+    },
+    "default": {
+        "front": DefaultFemaleFront,
+        "back": DefaultFemaleBack
+    }
+},
+{
     "name": "Carnegie Mellon Melon",
     "description": "Andrew Mellon? Or Watermelon? We may never truly know who the true Mellon is, but this shirt definitely has an opinion. Add some summer fruit to your school spirt!",
     "price": "$6.99",

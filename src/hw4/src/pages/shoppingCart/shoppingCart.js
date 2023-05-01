@@ -33,6 +33,12 @@ class CartItem extends React.Component {
         <option key={i} value={i+1}>{i+1}</option>
       )
     })
+    let tshirtImage;
+    try {
+      tshirtImage = shirts[tshirt.id].colors[`${tshirt.color}`].front;
+    } catch {
+      tshirtImage = shirts[tshirt.id].default.front;
+    }
     return (
       <div className="cartItem flexbox" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
         <div>
@@ -42,7 +48,7 @@ class CartItem extends React.Component {
         </div>
         <div className="flexbox" style={{width: "100%", justifyContent: "flex-start"}}>
           <Link to={`${routing.products}/${tshirt.id}`} exact="true" style={{margin: "0", width: "40%"}}>
-            <img src={shirts[tshirt.id].colors[`${tshirt.color}`].front} style={{width: "100%"}} alt="Shirt"></img>
+            <img src={tshirtImage} style={{width: "100%"}} alt="Shirt"></img>
           </Link>
           <div className="flexbox cartItemDesc" style={{flexDirection: "column", alignItems: "flex-start", justifyContent: "center", margin: "2vw"}}>
             <div className="flexbox select">
@@ -143,7 +149,9 @@ const Cart = () => {
     const cartItemsMaker = () => {
       return cartItems.map((tshirt, index) => {
         cnt += Number(tshirt.quantity);
-        fee += Number(tshirt.quantity) * Number(shirts[tshirt.id].price.slice(1));
+        if (shirts[tshirt.id].price !== undefined) {
+          fee += Number(tshirt.quantity) * Number(shirts[tshirt.id].price.slice(1));
+        }
         return (
           <CartItem key={index} tshirt={tshirt} index={index} changeQuantity={changeQuantity} removeItem={removeItem}/>
         )
