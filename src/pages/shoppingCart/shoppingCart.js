@@ -120,7 +120,7 @@ class Fee extends React.Component {
         </div>
         <div className="flexbox select" style={{width: "100%", justifyContent: "center"}}>
           <div className="flexbox">
-            <Link to={routing.notImplemented} className="tshirtBtn detailBtn flexbox" type="button">Sing in and Checkout</Link>
+            <Link to={routing.notImplemented} className="tshirtBtn detailBtn flexbox" type="button">Sign in and Checkout</Link>
           </div>
         </div>
       </div>
